@@ -1,2 +1,1 @@
-# Advent of code 2017
-Solutions in Kotlin
+# Advent of code 2017 - Kotlin
