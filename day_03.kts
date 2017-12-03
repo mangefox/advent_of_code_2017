@@ -20,13 +20,13 @@ fun spiral2(input: Int): Int {
     var (x, y, dir, dist) = listOf(0, 0, 1, 1)
     while (true) {
         while (y * dir * 2 < dist) {
-            val value = adjacentSum(mid-x, mid+y)
-            if (value > input) return value else matrix[mid-x][mid+y] = value
+            val sum = adjacentSum(mid-x, mid+y)
+            if (sum > input) return sum else matrix[mid-x][mid+y] = sum
             y += dir
         }
         while (x * dir * 2 < dist) {
-            val value = adjacentSum(mid-x, mid+y)
-            if (value > input) return value else matrix[mid-x][mid+y] = value
+            val sum = adjacentSum(mid-x, mid+y)
+            if (sum > input) return sum else matrix[mid-x][mid+y] = sum
             x += dir
         }
         dir *= -1
