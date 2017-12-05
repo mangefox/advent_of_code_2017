@@ -21,9 +21,5 @@ fun trampolines2(input: MutableList<Int>): Int {
 }
 
 fun get_input() = File("day_05_input").readLines().map { it.toInt() }.toMutableList()
-
-require(trampolines1(get_input()) == 364539)
 println("solution 1: " + trampolines1(get_input()))
-
-require(trampolines2(get_input()) == 27477714)
 println("solution 2: " + trampolines2(get_input()))
