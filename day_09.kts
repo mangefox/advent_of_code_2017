@@ -4,11 +4,10 @@ import java.util.*
 data class Result(val score: Int, val garbage: Int)
 
 fun process(input: String): Result {
-    var score = 1
+    var score = 0
     var totalScore = 0
     var garbage = false
     var garbageCounter = 0
-    val stack = LinkedList<Int>()
 
     var i = 0
     while (i in input.indices) {
@@ -17,12 +16,10 @@ fun process(input: String): Result {
             '<' -> if (!garbage) garbage = true
                    else garbageCounter += 1
             '>' -> garbage = false
-            '{' -> if (!garbage) stack.push(score++)
+            '{' -> if (!garbage) score++
                    else garbageCounter += 1
-            '}' -> if (!garbage) {
-                       totalScore += stack.pop()
-                       score--
-                   }  else garbageCounter += 1
+            '}' -> if (!garbage) totalScore += score--
+                   else garbageCounter += 1
             else -> if (garbage) garbageCounter += 1
         }
         i++
