@@ -2,8 +2,8 @@ import java.io.File
 
 fun part1(lines: List<String>) =
         lines.flatMap { Regex("[a-z]+").findAll(it).toList() .map { it.value } }
-                .groupingBy { it }.eachCount()
-                .filter { it.value == 1 }
+             .groupingBy { it }.eachCount()
+             .filter { it.value == 1 }
 
 val input = File("day_07_input").readLines()
 println("solution 1: " + part1(input))
