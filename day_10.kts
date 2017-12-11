@@ -1,5 +1,10 @@
 import java.io.File
 
+fun List<Int>.toDenseHash() =
+        this.chunked(size = 16)
+            .map { it.reduce { x, y -> x xor y} }
+            .joinToString("") { String.format("%02x", it) }
+
 fun reverseByIndices(listToModify: MutableList<Int>, indices: List<Int>) {
     if (indices.size < 2) return
     var head = 0
@@ -26,14 +31,8 @@ fun twist(input: List<Int>, rounds: Int = 1): MutableList<Int> {
     return rope
 }
 
-fun reduceToDenseHash(rope: MutableList<Int>) =
-        rope.chunked(size = 16)
-            .map { it.reduce { x, y -> x xor y} }
-            .joinToString("") { Integer.toString(it, 16)
-                                       .padStart(2, '0') }
-
-val input = File("day_10_input").readText().split(",").map(String::toInt)
-println("solution 1: " + twist(input).subList(0, 2).reduce(Int::times))
+val input1 = File("day_10_input").readText().split(",").map(String::toInt)
+println("solution 1: " + twist(input1).subList(0, 2).reduce(Int::times))
 
 val input2 = File("day_10_input").readText().toCharArray().map(Char::toInt) + listOf(17, 31, 73, 47, 23)
-println("solution 2: " + reduceToDenseHash(twist(input2, rounds = 64)))
+println("solution 2: " + twist(input2, rounds = 64).toDenseHash())
