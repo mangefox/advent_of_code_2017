@@ -9,7 +9,6 @@ val input = File("day_07_input").readLines()
 println("solution 1: " + part1(input))
 
 // part 2
-
 data class Node(val name: String, val weight: Int, val edges: MutableList<Node>) {
 
     fun sumChildWeights(): Int {
@@ -25,15 +24,13 @@ data class Node(val name: String, val weight: Int, val edges: MutableList<Node>)
 
 // create nodes in node map
 val nodes = mutableMapOf<String, Node>()
-for (x in input) {
-    val nodeValues = Regex("(\\w+) \\((\\d+)\\)").find(x)!!.groupValues.drop(1)
-    val n = Node(nodeValues[0], nodeValues[1].toInt(), mutableListOf())
-    nodes[n.name] = n
-}
+input.map { Regex("(\\w+) \\((\\d+)\\)").find(it)!!.groupValues.drop(1) }
+     .map { Node(name = it[0], weight = it[1].toInt(), edges = mutableListOf()) }
+     .forEach { nodes[it.name] = it }
 
 // add node edges
-for (x in input) {
-    val z = Regex("([a-z]+)").findAll(x).map { it.value }.toList()
+for (line in input) {
+    val z = Regex("([a-z]+)").findAll(line).map { it.value }.toList()
     if (z.size > 1) {
         for (i in 1..z.lastIndex) {
             nodes[z[0]]?.edges?.add(nodes[z[i]]!!)
@@ -41,4 +38,5 @@ for (x in input) {
     }
 }
 
+// solution 2
 nodes["fbgguv"]?.sumChildWeights()
