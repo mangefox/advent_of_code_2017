@@ -1,8 +1,8 @@
 import java.io.File
+import java.util.*
 
 fun List<Int>.toDenseHash() =
-        this.chunked(size = 16)
-            .map { it.reduce { x, y -> x xor y} }
+        this.chunked(size = 16) { it.reduce { x, y -> x xor y} }
             .joinToString("") { String.format("%02x", it) }
 
 fun reverseByIndices(listToModify: MutableList<Int>, indices: List<Int>) {
@@ -10,13 +10,11 @@ fun reverseByIndices(listToModify: MutableList<Int>, indices: List<Int>) {
     var head = 0
     var tail = indices.lastIndex
     do {
-        val tmp = listToModify[indices[head]]
-        listToModify[indices[head++]] = listToModify[indices[tail]]
-        listToModify[indices[tail--]] = tmp
+        Collections.swap(listToModify, indices[head++], indices[tail--])
     } while (head < tail)
 }
 
-fun twist(input: List<Int>, rounds: Int = 1): MutableList<Int> {
+fun twist(input: List<Int>, rounds: Int = 1): List<Int> {
     val rope = (0 until 256).toMutableList()
     var skip = 0
     var pos = 0
@@ -32,7 +30,7 @@ fun twist(input: List<Int>, rounds: Int = 1): MutableList<Int> {
 }
 
 val input1 = File("day_10_input").readText().split(",").map(String::toInt)
-println("solution 1: " + twist(input1).subList(0, 2).reduce(Int::times))
+println("solution 1: " + twist(input1).slice(0..1).reduce(Int::times))
 
 val input2 = File("day_10_input").readText().toCharArray().map(Char::toInt) + listOf(17, 31, 73, 47, 23)
 println("solution 2: " + twist(input2, rounds = 64).toDenseHash())
