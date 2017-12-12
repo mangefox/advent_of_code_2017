@@ -3,7 +3,7 @@ import java.io.File
 import kotlin.math.max
 import kotlin.system.exitProcess
 
-val lines = File("day_08_input").readLines()
+val lines = File("input/day_08").readLines()
 
 val reg = mutableMapOf<String, Int>()
 var maxVal = Int.MIN_VALUE

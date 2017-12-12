@@ -27,7 +27,7 @@ fun process(input: String): Result {
     return Result(totalScore, garbageCounter)
 }
 
-val input = File("day_09_input").readText()
+val input = File("input/day_09").readText()
 
 println("solution 1: " + process(input).score)
 println("solution 2: " + process(input).garbage)

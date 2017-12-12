@@ -29,8 +29,11 @@ fun twist(input: List<Int>, rounds: Int = 1): List<Int> {
     return rope
 }
 
-val input1 = File("day_10_input").readText().split(",").map(String::toInt)
+val input1 = File("input/day_10").readText().split(",").map(String::toInt)
 println("solution 1: " + twist(input1).slice(0..1).reduce(Int::times))
 
-val input2 = File("day_10_input").readText().toCharArray().map(Char::toInt) + listOf(17, 31, 73, 47, 23)
+val input2 = File("input/day_10").readText().toCharArray().map(Char::toInt) + listOf(17, 31, 73, 47, 23)
 println("solution 2: " + twist(input2, rounds = 64).toDenseHash())
+
+require(twist(input1).slice(0..1).reduce(Int::times) == 11413)
+require(twist(input2, rounds = 64).toDenseHash() == "7adfd64c2a03a4968cf708d1b7fd418d")

@@ -1,6 +1,6 @@
 import java.io.File
 
-val input = File("day_06_input").readText().split("\t").map { it.toInt() }
+val input = File("input/day_06").readText().split("\t").map { it.toInt() }
 
 val seen = mutableListOf<List<Int>>()
 val banks = input.toMutableList()

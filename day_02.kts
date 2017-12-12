@@ -11,6 +11,6 @@ fun checksum2(input: List<List<Int>>) =
                  }
              }
 
-val input = File("day_02_input").readLines().map { it.split("\t").map { it.toInt() } }
+val input = File("input/day_02").readLines().map { it.split("\t").map { it.toInt() } }
 println("solution 1: " + checksum1(input))
 println("solution 2: " + checksum2(input))

@@ -20,6 +20,6 @@ fun trampolines2(input: MutableList<Int>): Int {
     return steps
 }
 
-fun getInput() = File("day_05_input").readLines().map { it.toInt() }.toMutableList()
+fun getInput() = File("input/day_05").readLines().map { it.toInt() }.toMutableList()
 println("solution 1: " + trampolines1(getInput()))
 println("solution 2: " + trampolines2(getInput()))

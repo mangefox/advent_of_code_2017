@@ -5,7 +5,7 @@ fun part1(lines: List<String>) =
              .groupingBy { it }.eachCount()
              .filter { it.value == 1 }
 
-val input = File("day_07_input").readLines()
+val input = File("input/day_07").readLines()
 println("solution 1: " + part1(input))
 
 // part 2
